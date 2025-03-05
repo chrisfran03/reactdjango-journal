@@ -2,6 +2,7 @@ import { useState } from "react"
 import api from "../api"
 import { useNavigate } from "react-router-dom"
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"
+import "../styles/Form.css"
 
 function Form({ route, method }) {
     const [username, setUsername] = useState("")
@@ -13,10 +14,11 @@ function Form({ route, method }) {
 
     const handleSubmit = async (e) => {
         setLoading(true);
-        e.preventDefaullt();
+        e.preventDefault();
 
         try {
             const res = await api.post(route, { username, password })
+
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -51,3 +53,4 @@ function Form({ route, method }) {
         <button className="form-button" type="submit">{name}</button>
     </form>
 }
+export default Form
