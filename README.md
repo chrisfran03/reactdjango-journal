@@ -1,1 +1,2 @@
-# reactdjango-journal
+# React-Django Journal
+
